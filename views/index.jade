@@ -1,0 +1,125 @@
+extends layout
+
+block content
+  h1= title
+  p Making a #{title} because a regular diary is just too mainstream.
+  
+  h2 Statistics
+  
+  table.table
+    tr
+      th Name
+      th BMI
+      th Old Weight
+      th Weight Change
+      th Current Weight
+    tr
+      td Someone
+      td 23
+      td 77
+      td 85
+      td 21
+      
+  h2 User
+  
+  form.form-group(ng-submit="addUser(user)")
+    div.col-sm-6
+      label Name
+      input.form-control(ng-model="user.name")
+      label Age
+      input.form-control(ng-model="user.age")
+      label Gender
+      input.form-control(ng-model="user.gender")
+    div.col-sm-6
+      label Weight
+      input.form-control(ng-model="user.weight")
+      label Height
+      input.form-control(ng-model="user.height")
+      label Unit
+      input.form-control(ng-model="user.unit")
+    div
+      button.btn.btn-default Save User
+      
+  h2 User List
+      
+  table.table
+    tr
+      th Edit
+      th Delete
+      th Name
+      th Age
+      th Gender
+      th Weight
+      th Height
+      th Unit
+    tr(ng-repeat="u in userArray")
+      td 
+        button(ng-click="editUser($index)") Edit
+      td 
+        button(ng-click="deleteUser($index)") Delete
+      td {{u.name}}
+      td {{u.age}}
+      td {{u.gender}}
+      td {{u.weight}}
+      td {{u.height}}
+      td {{u.unit}}
+      
+  h2 Food    
+      
+  form(ng-submit="addFood(food)")
+    .col-sm-12
+      .form-group
+        label Description
+        input.form-control(name="desc" ng-model="food.description")
+      .form-group
+        label Meal
+        input.form-control(name="meal" ng-model="food.meal")
+      .form-group  
+        label Calories
+        input.form-control(name="calories" ng-model="food.calories")
+      .form-group  
+        label Servings
+        input.form-control(name="servings" ng-model="food.servings")
+      div
+        button.btn.btn-default Save Food
+      
+        
+  div
+    h2 Food Log
+    button.btn.btn-default(ng-click="getFoods()") Get Food
+      
+  table.table
+    tr
+      th Edit
+      th Delete
+      th Description
+      th Meal
+      th Calories
+      th Servings
+      th Date
+    tr(ng-repeat="f in foodArray")
+      td 
+        button(ng-click="editFood($index)") Edit
+      td 
+        button(ng-click="deleteFood($index)") Delete
+      td(ng-hide="editing") {{f.description}}
+      td(ng-hide="editing") {{f.meal}}
+      td(ng-hide="editing") {{f.calories}}
+      td(ng-hide="editing") {{f.servings}}
+      td(ng-hide="editing") {{f.date}}
+      
+      td(ng-show="editing")
+        input(ng-model="f.description")
+      td(ng-show="editing")
+        input(ng-model="f.meal")
+      td(ng-show="editing")
+        input(ng-model="f.calories")
+      td(ng-show="editing")
+        input(ng-model="f.servings")
+      td(ng-show="editing")
+        input(ng-model="f.date")
+      
+    
+    
+    
+
