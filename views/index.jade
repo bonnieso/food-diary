@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  p Making a #{title} because a regular diary is just too mainstream.
+  p Making a #{title}.
   
   h2 Statistics
   
@@ -14,11 +14,11 @@ block content
       th Weight Change
       th Current Weight
     tr
-      td Someone
-      td 23
-      td 77
-      td 85
-      td 21
+      td {{stats.name}}
+      td {{stats.bmi}}
+      td {{stats.oldWeight}}
+      td {{stats.weightChange}}
+      td {{stats.currentWeight}}
       
   h2 User
   
@@ -35,34 +35,28 @@ block content
       input.form-control(ng-model="user.weight")
       label Height
       input.form-control(ng-model="user.height")
-      label Unit
+      label Unit (in or cm)
       input.form-control(ng-model="user.unit")
     div
       button.btn.btn-default Save User
       
-  h2 User List
+  h2 User Data
       
   table.table
     tr
-      th Edit
-      th Delete
       th Name
       th Age
       th Gender
       th Weight
       th Height
       th Unit
-    tr(ng-repeat="u in userArray")
-      td 
-        button(ng-click="editUser($index)") Edit
-      td 
-        button(ng-click="deleteUser($index)") Delete
-      td {{u.name}}
-      td {{u.age}}
-      td {{u.gender}}
-      td {{u.weight}}
-      td {{u.height}}
-      td {{u.unit}}
+    tr
+      td {{userDisplay.name}}
+      td {{userDisplay.age}}
+      td {{userDisplay.gender}}
+      td {{userDisplay.weight}}
+      td {{userDisplay.height}}
+      td {{userDisplay.unit}}
       
   h2 Food    
       
@@ -86,7 +80,6 @@ block content
         
   div
     h2 Food Log
-    button.btn.btn-default(ng-click="getFoods()") Get Food
       
   table.table
     tr
